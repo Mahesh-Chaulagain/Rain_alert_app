@@ -28,7 +28,7 @@ will_rain = False
 
 for hourly_data in weather_slice:
     condition_code = hourly_data["weather"][0]["id"]   # get hold of the weather condition "id"
-    if int(condition_code) < 700:
+    if int(condition_code) < 900:
         will_rain = True
 
 if will_rain:
@@ -36,7 +36,7 @@ if will_rain:
     message = client.messages \
         .create(
             body="It's going to rain today. Remember to bring an Umbrella☔",
-            from_='+14242752645',
-            to='+977-9843624965'
+            from_=os.getenv("FROM_NUMBER"),
+            to=os.getenv("TO_NUMBER")
     )
     print(message.status)
